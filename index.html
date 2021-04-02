@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf8" />
+    <script type="text/javascript" src="matrice.js"></script>
+    <title>Test JSON</title>
+    <script type="text/javascript">
+        function draw() {
+          let canvas = document.getElementById('tutorial');
+          let fromJSON = localStorage.getItem("idJSON");
+            let obj = JSON.parse(fromJSON)
+          if (canvas.getContext) {
+            let ctx = canvas.getContext('2d');
+            for(let i = 0; i < obj.matrice.length; i++){
+              for(let j = 0; j < obj.matrice.length; j++){
+                  if(obj.matrice[j][i] == 0){
+                      ctx.fillStyle = "white";
+                  } else {
+                      ctx.fillStyle = "black";
+                  }
+                  ctx.fillRect(4*i,4*j,4*i+4,4*j+4);
+              }
+            }
+          }
+        }
+      </script>   
+</head>
+<style type="text/css">
+    canvas { border: 1px solid black; }
+  </style>
+</head>
+<body onload="draw();">
+  <canvas id="tutorial" width="800" height="800"></canvas>
+</body>
+</html>
